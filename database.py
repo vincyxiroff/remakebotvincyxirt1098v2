@@ -100,3 +100,9 @@ class Database:
         self.db.commit()
         self.close_connection()
 
+    def get_values_general(self, table_name, columns, condition):
+        self.get_connection()
+        self.cursor.execute(f"select {columns} from {table_name} where {condition};")
+        result = list(self.cursor)
+        self.close_connection()
+        return result
