@@ -19,3 +19,10 @@ class Tickets(commands.Cog):
                                          " is_closed BOOLEAN, creation_date DATE")
         print('Tickets workanti!')
 
+    @commands.hybrid_command(name="ticketsgen", with_app_command=True,
+                             description="crea L'embed per generare ticket")
+    async def ticketsgen(self, ctx):
+        role_identificator = config.get("ticket-creation-admin-role")
+        if await check_permissions(ctx.author, role_identificator):
+            await self.create_generator(ctx)
+            await remove_command_message(ctx.message)
