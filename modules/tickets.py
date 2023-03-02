@@ -141,3 +141,28 @@ class Tickets(commands.Cog):
                     embed.set_footer(text=embed_conf.get("embed-footer"))
                     await interaction.response.send_message(embed=embed, ephemeral=True)
                     print(f"Impossibile creare il ticket per {interaction.user.name}, l'utente ha troppi tickets")
+
+
+    @commands.Cog.listener()
+    async def on_message(self, message):
+        if not config.get("ping-admin-role-on-user-response"):
+            return
+        if db.check_contains("tickets", "ticket_channel_id", str(message.channel.id))\
+                and db.check_contains("tickets", "creator_id", str(message.author.id)):
+            category = db.get_value_general("tickets", "ticket_category",
+                                            f"ticket_channel_id={str(message.channel.id)} AND creator_id={str(message.author.id)}")
+            role_identificator = config.get("categories").get(category).get("admin-role")
+            if isinstance(role_identificator, int):
+                admin_role = discord.utils.get(message.guild.roles, id=role_identificator)
+            else:
+                admin_role = discord.utils.get(message.guild.roles, name=role_identificator)
+            msg = await message.channel.send(f"{admin_role.mention}")
+            await msg.delete()
+
+
+    @commands.Cog.listener()
+    async def on_guild_channel_delete(self, channel):
+        if db.check_contains("tickets", "ticket_channel_id", str(channel.id)):
+            if not db.get_value_general("tickets", "is_closed", f"ticket_channel_id={channel.id}"):
+                await self.close_ticket(channel, True)
+                print("Ticket chiusura forzata, il canale è stato eliminato!")
