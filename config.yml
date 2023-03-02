@@ -1,0 +1,19 @@
+bot-token: put-your-token-here
+bot-activity: "W dev vincyxirt#1098"
+
+database:
+  host: localhost
+  port: 3306
+  databaseName: testtes
+  user: root
+  password: passseceee
+
+# Unknown command handling
+remove-unknown-commands: true
+
+command-not-found-embed:
+  enabled: true
+  title: "Unknown command"
+  description: "Unknown command, try again."
+  color: 0xff0000
+  footer: "vincyxirOnFireBot"
