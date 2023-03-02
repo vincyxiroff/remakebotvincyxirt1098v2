@@ -1,0 +1,73 @@
+maximum-tickets-per-user: 3
+ticket-creation-admin-role: Assistant # ID o nome del ruolo che potrà utilizzare .ticketsgen
+ticket-channel-category: Tickets
+ping-admin-role-on-creation: true
+ping-admin-role-on-user-response: true
+send-transcription: true
+transcript-description: "Ciao, ti mando una trascrizione del tuo biglietto (nel caso ne avessi bisogno), grazie per averci contattato buona giornata."
+transcript-channel: 927152451423977482 # Se è stato definito un ID canale, salverà qui le trascrizioni di tutti i ticket
+require-close-confirmation: true # Se impostato su true, ad ogni chiusura del ticket verrà visualizzato un messaggio di conferma
+
+
+# Placeholder disponibili:
+# - {ticket_count} - Numero del biglietto
+# - {creator} - Nome dell'utente che ha creato il ticket
+# - {category_name} - Nome della categoria per cui è stato creato il biglietto
+ticket-channel-name-format:  "Ticket {ticket_count}"
+
+ticket-creator-embed:
+  embed-title: "Creare un nuovo ticket"
+  embed-description: "Per creare un ticket, per favore reagisci con il pulsante che corrisponde alla tua categoria di problema."
+  embed-colour: 0xFFA500
+  embed-footer: "vincyxirt#1098 Ticket system"
+
+ticket-created-embed:
+  embed-title: "Ticket creato!"
+  embed-description: "Il tuo ticket è stato creato: {channel}"
+  embed-colour: 0x00ff00
+  embed-footer: "vincyxirt#1098 Ticket system"
+
+too-many-tickets-embed:
+  embed-title: "Troppi tickets!"
+  embed-description: "Per favore, chiudi qualche altro ticket, prima di crearne uno nuovo."
+  embed-colour: 0xff0000
+  embed-footer: "vincyxirt#1098 Ticket system"
+
+ticket-management-embed:
+  embed-title: "{channel-name}"
+  embed-description: "{instructions}"
+  embed-colour: 0xFFA500
+  embed-footer: "vincyxirt#1098 Ticket system"
+  close-button: "Chiudi il ticket"
+
+missing-role-embed:
+  embed-title: "Missing role"
+  embed-description: "Hai bisogno del {role} role per creare un nuovo ticket in questa categoria!"
+  embed-colour: 0xff0000
+  embed-footer: "vincyxirt#1098 Ticket system"
+
+confirm-close-embed:
+  embed-title: "Conferma"
+  embed-description: "Vuoi davvero chiudere questo ticket?"
+  embed-colour: 0xFFA500
+  embed-footer: "vincyxirt#1098 Ticket system"
+  confirm-button: "Conferma"
+
+categories:
+  general:
+    admin-role: Assistant
+    name: General ticket
+    emoji: '❤️'  # L'emoji dovrebbe essere in formato UTF-8, ":name:" non funzionerà!
+    instructions: "Grazie per averci contattato! In attesa che il nostro staff si prenda cura di te, per favore, dicci di più sul problema."
+    required-role:   # Lascia vuoto se tutti dovrebbero essere in grado di aprire il ticket in questa categoria
+  bug_report:
+    admin-role: Assistant
+    name: Bug report
+    emoji: ''
+    instructions: "Grazie per averci contattato! In attesa che il nostro staff si prenda cura di te, per favore, dicci di più sul bug."
+  feature_request:
+    admin-role: Assistant
+    name: Feature request
+    emoji: ''
+    instructions: "Grazie per averci contattato! In attesa che il nostro staff si prenda cura di te, per favore, dicci di più su cosa vorresti che implementassimo."
+    required-role: Cliente
