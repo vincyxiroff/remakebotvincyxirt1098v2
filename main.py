@@ -18,7 +18,7 @@ async def on_ready():
     await bot.change_presence(activity=discord.Game(config.get("bot-activity")))
     print("sincronizzazione dei comandi...")
     await bot.tree.sync()
-    print('Bot pronto)
+    print('Bot pronto')
 
 @bot.event
 async def on_command_error(ctx, error):
