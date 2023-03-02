@@ -81,3 +81,22 @@ class Database:
         self.close_connection()
         return result[0]
 
+    def update_data(self, tbname, column, value, condition):
+        self.get_connection()
+        self.cursor.execute(f"update {tbname} set {column}={value} where {condition}")
+        self.db.commit()
+        self.close_connection()
+
+    def get_value_general(self, tbname, column, condition):
+        self.get_connection()
+        self.cursor.execute(f"select {column} from {tbname} where {condition};")
+        result = self.cursor.fetchone()
+        self.close_connection()
+        return result[0]
+
+    def delete_value_general(self, table_name, condition):
+        self.get_connection()
+        self.cursor.execute(f"delete from {table_name} where {condition}")
+        self.db.commit()
+        self.close_connection()
+
