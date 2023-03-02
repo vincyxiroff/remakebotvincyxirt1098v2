@@ -2,14 +2,12 @@ import discord
 
 
 async def remove_command_message(message):
-    """Handles message removal for non-slash commands"""
     if message.type != discord.MessageType.default:
         return
     await message.delete()
 
 
 async def check_permissions(member: discord.Member, required_role):
-    """Checks if user has the required role / is admin"""
     if member.guild_permissions.administrator:
         return True  # Admins dovrebbero essere sempre in grado di eseguire tutto
     if required_role is None:   # There is a requirement for specific role to use the command
