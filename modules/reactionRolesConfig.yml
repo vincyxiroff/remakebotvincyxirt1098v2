@@ -1,0 +1,59 @@
+selector-creation-admin-role: Administrator
+
+role-added-embed:
+  enabled: true
+  send-to: channel # valori possibili: 'dm' = messaggi diretti dell'utente, 'channel' = il canale del selettore
+  embed-title: "Ruolo aggiunto, {user}"
+  embed-description: "nuovo ruolo **{role}** è stato aggiunto al tuo account!"
+  embed-footer: "vincyxirt#1098 Reaction Roles"
+  embed-color: 0x00ff00
+
+role-removed-embed:
+  enabled: true
+  send-to: channel # possible values: 'dm' = user's direct messages, 'channel' = the channel of selector
+  embed-title: "Ruolo rimosso, {user}"
+  embed-description: "Ruolo **{role}** è stato rimosso dal tuo account!"
+  embed-footer: "vincyxirt#1098 Reaction Roles"
+  embed-color: 0xff0000
+
+another-role-required-embed:
+  send-to: dm # possible values: 'dm' = user's direct messages, 'channel' = the channel of selector
+  embed-title: "Un altro ruolo richiesto, {user}"
+  embed-description: "Mi dispiace, devi avere **{required_role}** prima di poter acquisire questo ruolo."
+  embed-footer: "vincyxirt#1098 Reaction Roles"
+  embed-color: 0xff0000
+
+selectors:
+  rules: # This is the selector name
+    type: reaction     # Possible values: reaction/menu
+    select-menu-title: "Accetta le regole:"
+    embed-title: "Regole del server"
+    embed-description: "Per favore, accetta le nostre regole del server facendo clic sul pulsante di conferma."
+    embed-footer: "vincyxirt#1098 Reaction Roles"
+    embed-color: 0x00ff00
+    options:
+      agreeRules:
+        name: "Accetta regole"
+        description: "Seleziona questa opzione per ricevere il ruolo RulesAccepted."
+        emoji: "âœ…"
+        role: RulesAccepted
+  multi-role-selector: # This is the selector name
+    type: menu    # Possible values: reaction/menu
+    select-menu-title: "Seleziona il tuo ruolo:"
+    embed-title: "Seleziona il tuo ruolo:"
+    embed-description: "ðŸ˜” - Ruolo 1\nðŸ˜Š - Ruolo 2"
+    embed-footer: "vincyxirt#1098 Reaction Roles"
+    embed-color: 0x00ff00
+    only-one-role: true # If set to true, user will be able to only select one role from the selector
+    options:
+      Role1:
+        name: "Qualche ruolo"
+        description: "Seleziona questo per ricevere un ruolo.."
+        emoji: "ðŸ˜”"
+        role: Role1
+        required-role: RulesAccepted # The user has to have RulesAccepted role to be able to get the Role1 role
+      Role2:
+        name: "Un altro ruolo"
+        description: "Seleziona questo per ricevere un altro ruolo"
+        emoji: "ðŸ˜Š"
+        role: Role2
